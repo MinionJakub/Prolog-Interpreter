@@ -1,6 +1,7 @@
 cat(tome).
 cat(finio).
 animal(X) :- cat(X).
+animal(X) :- dog(X).
 parent(pawel,asia).
 male(pawel).
 parent(andrzej,pawel).
