@@ -1,5 +1,5 @@
 clean:
-	rm -r */*.cmi */*.cmx */*.out */*.o */*.cmo	
+	rm -r */*.cmi */*.cmx */*.out */*.o */*.cmo	*/*.output
 	rm ./a.out ./interpreter_prologa.out	
 
 install:
