@@ -15,4 +15,4 @@ install:
 	ocamlopt -I ./MyParser/ -I ./Monads/ -I ./Interpreter/ errors.cmx ast.cmx yaccParser.cmx lexer.cmx parser.cmx StateMaybeMonad.cmx Common.cmx ./Interpreter/Robinson.ml
 	ocamlopt -I ./MyParser/ -I ./Monads/ -I ./Interpreter/ errors.cmx ast.cmx yaccParser.cmx lexer.cmx parser.cmx StateMaybeMonad.cmx Common.cmx Robinson.cmx ./Interpreter/State_Uni.ml
 	ocamlopt -I ./MyParser/ -I ./Monads/ -I ./Interpreter/ errors.cmx ast.cmx yaccParser.cmx lexer.cmx parser.cmx StateMaybeMonad.cmx Common.cmx Robinson.cmx State_Uni.cmx ./Interpreter/evaluator_monad.ml
-	ocamlopt -I ./MyParser/ -I ./Monads/ -I ./Interpreter/ errors.cmx ast.cmx yaccParser.cmx lexer.cmx parser.cmx StateMaybeMonad.cmx Common.cmx Robinson.cmx State_Uni.cmx evaluator_monad.cmx ./Interpreter/main_monad_file.ml -o interpreter_prologa.out
+	ocamlopt -I ./MyParser/ -I ./Monads/ -I ./Interpreter/ errors.cmx ast.cmx yaccParser.cmx lexer.cmx parser.cmx StateMaybeMonad.cmx Common.cmx Robinson.cmx State_Uni.cmx evaluator_monad.cmx ./Interpreter/main_monad_file.ml -o interpreter_prologa
