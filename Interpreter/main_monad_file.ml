@@ -27,7 +27,8 @@ let rec loop_c db channel = (
         match (List.hd dec) with
         | Query _ -> 
           let new_db = eval_dec (List.hd dec) db 
-          in let _ = print_endline value ;new_db State.empty  in loop_c db channel
+          in let _ = print_endline value ;new_db State.empty  
+          in loop_c db channel
         | _ -> 
           let new_db = eval_dec (List.hd dec) db 
           in loop_c new_db channel

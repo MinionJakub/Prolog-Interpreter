@@ -14,13 +14,18 @@ let rec eval_query m =
   (*At least one goal to prove*)
   | (goal_elem :: goal_rest) -> 
     (
-      let vars_list_string = (find_vars_string state.goals) @ state.orig_vars |> uniq in
+      let vars_list_string = (find_vars_string state.goals) @ 
+      state.orig_vars |> uniq in
       let substitutions = find_sub vars_list_string state.substitutions in
       match goal_elem with
-      | True -> eval_query (SMMonad.modify_state (change_state_goals_substitution goal_rest substitutions))
-      | TermExp(_,_) -> List.fold_right (unify_rule substitutions eval_query goal_elem goal_rest) state.productions (SMMonad.return [])
+      | True -> eval_query (SMMonad.modify_state 
+      (change_state_goals_substitution goal_rest substitutions))
+      | TermExp(_,_) -> List.fold_right 
+      (unify_rule substitutions eval_query goal_elem goal_rest) 
+      state.productions (SMMonad.return [])
       (*subgoal isn't term exp*)
-      | _ -> eval_query (SMMonad.modify_state (change_state_goals_substitution goal_rest substitutions))
+      | _ -> eval_query (SMMonad.modify_state 
+      (change_state_goals_substitution goal_rest substitutions))
     )
   
 
@@ -73,7 +78,9 @@ let rec add_dec_to_state dec state =
   | Rule (h,b) -> (
     match h with
     | True -> state
-    | _ -> (State.make {goals = state.goals; productions = dec :: state.productions; substitutions = state.substitutions; orig_vars = state.orig_vars})
+    | _ -> (State.make {goals = state.goals; 
+    productions = dec :: state.productions; substitutions = state.substitutions; 
+    orig_vars = state.orig_vars})
   )
   | _ -> state
 
@@ -84,7 +91,8 @@ let eval_dec dec m =
   | Query b -> begin let orig_vars = uniq (find_vars b) in 
     let orig_vars_string = find_vars_string b |> uniq in 
     let orig_vars_num = List.length orig_vars in 
-    let v = (State.make {goals = b;productions =  state.productions; substitutions = state.substitutions; orig_vars = orig_vars_string}) in 
+    let v = (State.make {goals = b;productions =  state.productions; 
+    substitutions = state.substitutions; orig_vars = orig_vars_string}) in 
     let res = eval_query (SMMonad.modify_state (fun x -> v)) in 
     let runned = (res State.empty) in 
     match runned with 

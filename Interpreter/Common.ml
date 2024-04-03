@@ -14,14 +14,16 @@ let rec string_of_exp value =
   | Atom v ->  ("Atom:" ^ v)
   | ConstExp v ->  ("Constant: " ^ (string_of_const v))
   | VarExp v ->  ("Variable: \"" ^ v ^ "\"")
-  | TermExp(x,y) -> ((x ^ "(\n") ^ (List.fold_left (fun w z -> (w ^ (string_of_exp z))^"") "" y)) ^ ")";;
+  | TermExp(x,y) -> ((x ^ "(\n") ^ (List.fold_left (fun w z -> 
+    (w ^ (string_of_exp z))^"") "" y)) ^ ")";;
 
 let string_of_dec value = 
   match value with 
   | Fact v -> "Fact: " ^ string_of_exp v
   | Rule(x,y) -> (("Rule: exp=" ^ string_of_exp x) ^ "\nPred=\n") ^ 
   (List.fold_left (fun w z -> w ^ ((string_of_exp z) ^ ",\n")) "" y)
-  | Query x -> ("Query:" ^ (List.fold_left (fun w z -> w ^ ((string_of_exp z) ^ ",\n")) "" x));;
+  | Query x -> ("Query:" ^ (List.fold_left (fun w z -> w ^ 
+  ((string_of_exp z) ^ ",\n")) "" x));;
 
 let rec string_of_program value = 
   match value with
@@ -49,7 +51,8 @@ let (fresh,reset,set) =
 
 
 (*
-  Find vars: takes in list of expression and return a list of all varexp in the list
+  Find vars: takes in list of expression 
+  and return a list of all varexp in the list
 *)
 let find_vars question =
   let rec _find_vars question acc = 
@@ -67,7 +70,8 @@ let find_vars question =
 in _find_vars question [];;
 
 (*
-  Uniq: takes a list and returns the reversed with only uniq copy of each element   
+  Uniq: takes a list and returns 
+  the reversed with only uniq copy of each element   
 *)
 let uniq l = 
   let rec tail_uniq a l = 

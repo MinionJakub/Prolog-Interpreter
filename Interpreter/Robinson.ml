@@ -17,7 +17,8 @@ let rec sub_lift_goal substitution goal =
     with Not_found -> VarExp v
   end
   | ConstExp x ->  goal
-  | TermExp (name,lista) -> TermExp (name,List.map (fun new_goal -> sub_lift_goal substitution new_goal) lista)
+  | TermExp (name,lista) -> TermExp (name,List.map 
+  (fun new_goal -> sub_lift_goal substitution new_goal) lista)
 
 (*
   sub_lift_goals
@@ -108,7 +109,8 @@ let rec unify constrains =
         match t with
         | VarExp k -> unify ((t,s) :: c')
         | TermExp (tname,targs) -> 
-          if (tname = sname && List.length targs = List.length sargs) then unify (pair_and_cat sargs targs c')
+          if (tname = sname && List.length targs = List.length sargs)
+             then unify (pair_and_cat sargs targs c')
           else None
         | _ -> None
       )
